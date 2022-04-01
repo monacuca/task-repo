@@ -1,4 +1,3 @@
-
 let f = false
 let start;
 // TODO: finish timing code???
@@ -8,7 +7,7 @@ c.height = 640;
 let point = 0;
 const g = c.getContext('2d');
 let d = 'up';
-let dx = 20, dy = 20;
+let dx = 20, dy =20;
 let food = { x: getRandomArbitrary(1, 640), y: getRandomArbitrary(1, 640) };
 let s = [{ x: 320, y: 320 }];
 
@@ -83,9 +82,16 @@ const moveSnake = (timestamp) => {
 }
 
 // TODO : implement Scoreboard? 
-
+const clearCanvas = () => {
+    g.fillStyle = 'white';
+    g.clearRect(0, 0, 640, 640);
+    g.rect(0, 0, 640, 640);
+    g.closePath();
+    g.fill();
+}
 
 const intro = () => {
+    clearCanvas();
     g.font = '30px Arial';
     g.fillStyle = 'black';
     
@@ -95,6 +101,8 @@ const intro = () => {
 }
 
 const startGame = () => {
+    
+    clearCanvas();
     if(f) {
         s = [{ x: 320, y: 320 }];
         d = 'up';
@@ -104,6 +112,8 @@ const startGame = () => {
 }
 
 const gameOver = () => {
+    
+    clearCanvas();
     f = false;
     g.font = '30px Arial';
     g.fillStyle = 'black';
@@ -112,6 +122,7 @@ const gameOver = () => {
     g.fillText(`Press Enter to play again.`, 320, 360);
     setTimeout(() => { 
         if(!f) {
+            clearCanvas();
             intro();
         }
     }, 10000);
